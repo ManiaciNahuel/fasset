@@ -1,0 +1,162 @@
+.home-hero {
+  color: $colorTerciario;
+  background-color: $colorTerciario;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+
+  @include respond(phone) {
+    height: unset;
+    min-height: unset;
+  }
+
+  &__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90rem;
+    width: 92%;
+
+    @include respond(phone) {
+      padding: 19rem 0 13rem 0;
+      margin: auto;
+      position: static;
+      transform: translate(0, 0);
+    }
+  }
+
+  &__logo {
+    max-width: 80%;
+    /* Ajusta el tamaño máximo de la imagen al 50% del contenedor */
+    height: auto;
+    /* Permite que la altura se ajuste automáticamente según el ancho */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Centra verticalmente */
+    margin: 0 auto;
+    /*  */
+  }
+
+  &__boton {
+    color: white;
+    position: absolute;
+    bottom: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    border: solid 1px white;
+    padding: 1.5rem 8rem;
+    font-size: 2rem;
+    border-radius: 5px;
+    transition: transform .3s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(white, 0.6);
+      color: black;
+      box-shadow: 0 15px 15px 0 rgba(255, 255, 255, 0.415);
+      transform: translate(-50%, -20%);
+    }
+  }
+}
+
+.heading-primary {
+  display: none;
+  color: $colorPrimario;
+  font-size: 5rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-align: center;
+
+  @include respond(phone) {
+    font-size: 4.5rem;
+  }
+}
+
+
+.heading-sec {
+  color: $colorPrimario;
+
+  &__mb-bg {
+    margin-bottom: 3rem;
+
+    @include respond(tab-port) {
+      margin-bottom: 8rem;
+    }
+  }
+
+  &__mb-med {
+    margin-bottom: 9rem;
+
+    @include respond(tab-port) {
+      margin-bottom: 8rem;
+    }
+  }
+
+  &__main {
+    display: block;
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    letter-spacing: 3px;
+    text-align: center;
+    margin-bottom: 3.5rem;
+    position: relative;
+    color: $colorPrimario;
+
+    &--lt {
+      color: $colorPrimario;
+
+      &::after {
+        content: '';
+        background: $colorSecundario !important;
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: calc(100% + 1.5rem);
+      height: 5px;
+      width: 3rem;
+      background: $colorSecundario;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: $commonBorderRadius;
+
+      @include respond(phone) {
+        top: calc(100% + 1.2rem);
+      }
+    }
+  }
+
+  &__sub {
+    display: block;
+    text-align: center;
+    color: $colorPrimario;
+    font-size: 2rem;
+    font-weight: 500;
+    max-width: 80rem;
+    margin: auto;
+    line-height: 1.6;
+
+    @include respond(phone) {
+      font-size: 1.8rem;
+    }
+
+    &--lt {
+      color: $colorPrimario;
+    }
+  }
+}
+
+.heading-sm {
+  font-size: 2.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: $colorSecundario;
+}

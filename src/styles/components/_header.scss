@@ -1,0 +1,194 @@
+.header {
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  background: rgba($colorTerciario, 1);
+  box-shadow: 0 10px 10px rgba($colorTerciario, 0.6);
+  border-bottom: 1px white solid;
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 2rem;
+
+    @include respond(tab-port) {
+      padding: 0 2rem;
+    }
+  }
+
+  &__logo-container {
+    width: 40rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: $colorPrimario;
+    transition: color 0.3s;
+
+    &:hover {
+      color: $colorSecundario;
+    }
+  }
+
+  &__logo-img-cont {
+    width: 5rem;
+    height: 4rem;
+    border-radius: 50px;
+    overflow: hidden;
+    margin-right: 1.5rem;
+    background: $colorPrimario;
+
+    @include respond(tab-port) {
+      width: 4.5rem;
+      height: 4.5rem;
+      margin-right: 1.2rem;
+    }
+  }
+
+  &__logo-img {
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  &__logo-sub {
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  &__links {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+
+    @include respond(phone) {
+      display: none;
+    }
+  }
+
+  &__link {
+    margin: 0rem 1rem;
+    padding: 0.7rem 1rem;
+    display: inline-block;
+    font-size: 1.6rem;
+    color: $colorPrimario;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    transition: color 0.3s;
+    border-radius: $intermediateRadius;
+    transition: transform 0.3s;
+
+
+    &:hover {
+      cursor: pointer;
+      background-color: rgba($colorPrimario, 0.8);
+      transform: translateY(-3px);
+      color: black;
+      box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.415);
+    }
+
+    @include respond(tab-port) {
+      padding: 3rem 1.8rem;
+      font-size: 1.5rem;
+    }
+
+    .search-icon-container {
+      position: relative;
+      display: inline-block;
+    }
+
+    img {
+      vertical-align: middle;
+     
+    }
+
+   /*  .search-icon-container:before {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      right: 0px;
+      transform: translateY(-80%);
+      width: 175px;
+      height: 1px;
+      background-color: white;
+    } */
+  }
+
+  &__main-ham-menu-cont {
+    display: none;
+    width: 3rem;
+
+    padding: 2.2rem 0;
+
+    button {
+      background-color: transparent;
+      transition: transform 1s;
+    }
+
+    .btn-open {
+      transform: rotate(90deg);
+    }
+
+    @include respond(phone) {
+      display: block;
+    }
+  }
+
+  &__main-ham-menu {
+    width: 100%;
+  }
+
+  &__main-ham-menu-close {
+    width: 100%;
+  }
+
+  &__sm-menu {
+    background-color: rgba($colorPrimario, 1);
+
+    position: absolute;
+    width: 100%;
+    top: 100%;
+
+    transition: all 0.3s;
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.1);
+  }
+
+  &__sm-menu-link {
+    a {
+      display: block;
+      text-decoration: none;
+      padding: 2.5rem 3rem;
+      font-size: 1.6rem;
+      color: $colorTerciario;
+      text-align: right;
+      border-bottom: 1px solid $colorTerciario;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      transition: color 0.3s;
+
+      &:hover {
+        color: $colorSecundario;
+      }
+    }
+
+    &:first-child {
+      a {
+        border-top: 1px solid $colorTerciario;
+      }
+    }
+  }
+
+  &__sm-menu-link-last {
+    border-bottom: 0;
+  }
+}

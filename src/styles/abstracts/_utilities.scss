@@ -1,0 +1,75 @@
+
+
+.main-container {
+  margin: 10rem auto;
+  width: 92%;
+}
+
+.btn {
+  background: rgba($colorTerciario, 0.8);
+  color: $colorPrimario;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  display: inline-block;
+  font-weight: 700;
+  border: none;
+  border-radius: $curveBorder;
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.415);
+  transition: transform .3s;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgba($colorPrimario, 0.8);
+    transform: translateY(-5px);
+    color: black;
+    box-shadow: 0 15px 15px 0 rgba(0, 0, 0, 0.415);
+  }
+
+  &--bg {
+    padding: 1.5rem 8rem;
+    font-size: 2rem;
+  }
+
+  &--med {
+    padding: 1.5rem 5rem;
+    font-size: 1.6rem;
+  }
+
+  &--theme {
+    background: $colorPrimario;
+    color: $colorTerciario;
+  }
+
+  &--theme-inv {
+    color: $colorPrimario;
+    background: $colorTerciario;
+    border: 2px solid $colorPrimario;
+    box-shadow: none;
+    padding: calc(1.5rem - 2px) calc(5rem - 2px);
+  }
+}
+
+.sec-pad {
+  padding: 5rem 0;
+
+  @include respond(tab-port) {
+    padding: 6rem 0;
+  }
+}
+
+.text-primary {
+  color: $colorPrimario;
+  font-size: 2.2rem;
+  text-align: center;
+  width: 100%;
+  line-height: 1.6;
+
+  @include respond(phone) {
+    font-size: 2rem;
+  }
+}
+
+
+.d-none {
+  display: none;
+}
