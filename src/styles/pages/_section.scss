@@ -1,13 +1,14 @@
 .section {
   background: rgba($colorPrimario, 0.7);
-  padding-top: 15rem;
-  margin-top: -90px;
-  height: 100vh;
+  display: flex;
+  min-height: 100vh;
+  text-align: center;
 
   &__content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 8rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2rem;
 
     @include respond(tab-port) {
       grid-template-columns: 1fr;
@@ -29,7 +30,7 @@
       color: $colorTerciario;
       max-width: 92%;
       line-height: 1.7;
-      margin-bottom: 1rem;
+      margin: 1rem 2rem;
 
       &--hl {
         font-weight: 700;
@@ -44,9 +45,9 @@
 
   .item {
     background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 14px rgba(0, 0, 0, 0.3);
     border-radius: 4px;
-    margin: 10px;
+    margin: 0 2rem 4rem;
     padding: 15px;
   }
 
