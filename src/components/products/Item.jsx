@@ -6,14 +6,21 @@ export const Item = ({ image, title, price }) => {
      }
 
     return (
-        <div className="item">  
-        <img src={image} alt={title} />
-        <div className="item-content">
-            <h3>{title}</h3>
-            <p>${price}</p>
-            <button onClick={buttonOnClick}>Agregar al carrito</button>
+        <div className="shop-card">
+        <div className="title">{title}</div>
+        <div className="desc">Tu remera ideal</div>
+        <div className="slider">
+            <figure>
+            <img src={image} alt={title} />
+            </figure>
+        </div>
+
+        <div className="cta">
+            <div className="price">${price}</div>
+            <button className="btn" onClick={buttonOnClick}>Ver más<span className="bg"></span></button>
         </div>
         </div>
+
     );
 };
 
