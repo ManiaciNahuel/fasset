@@ -10,10 +10,10 @@ export const Section = () => {
       <div className="main-container">
         <div className="section__content">
           <div className="section__content-details">
-            <Item image={remeraNegra} title={"Remera Negra"} price={1000} />
+            <Item image={remeraNegra} title={"Remera Negra"} price={1000} id={1} />
           </div>
           <div className="section__content-details">
-            <Item image={remeraBlanca} title={"Remera Blanca"} price={1000} />
+            <Item image={remeraBlanca} title={"Remera Blanca"} price={1000} id={2}/>
           </div>
         </div>
       </div>

@@ -1,8 +1,10 @@
 import React from "react";
 import isotipo from "../../assets/images/Isotipo.jpg"
+import { Section } from "./Section";
 
 export const Home = () => {
   return (
+    <>
     <section className="home-hero" id="home">
       {/*  <!-- HELLO SECTION --> */}
       <div className="home-hero__content">
@@ -18,5 +20,7 @@ export const Home = () => {
         <div className="mouse"></div>
       </div>
     </section>
+      <Section></Section>
+    </>
   );
 };
