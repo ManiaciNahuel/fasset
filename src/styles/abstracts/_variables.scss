@@ -5,3 +5,14 @@ $colorTerciario: #000000;
 $commonBorderRadius: 5px;
 $intermediateRadius: 12px;
 $curveBorder: 25px;
+
+@font-face {
+  font-family: 'MyCustomFont';
+  src: url('../NEOMETRA-FFP.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'MyCustomFont', sans-serif;
+}
