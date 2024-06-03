@@ -4,9 +4,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4rem;
+  padding: 10rem 2rem 2rem;
   position: relative;
   text-align: left;
+  font-family: 'MyCustomFont', sans-serif;
+  font-weight: bold;
 
   .container {
     display: flex;
@@ -16,6 +18,12 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     max-width: 1200px;
     width: 60%;
+
+    @include respond(phone) {
+      flex-direction: column;
+      width: 100%;
+      padding: 2rem 1rem;
+    }
   }
 
   .image {
@@ -25,7 +33,6 @@
     align-items: center;
 
     img {
-      
       max-height: 500px;
       max-width: 100%;
       aspect-ratio: auto;
@@ -34,8 +41,14 @@
       transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
       &:hover {
-        transform: scale(1.45);
+        transform: scale(1.05);
         box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      @include respond(phone) {
+        flex-direction: column;
+        width: 90%;
+        padding: 1rem;
       }
     }
   }
@@ -47,17 +60,32 @@
     flex-direction: column;
     justify-content: space-between;
 
-    h1 {
+    @include respond(phone) {
+      padding-left: 0;
+      padding-top: 1rem;
+    }
+
+    h2 {
       font-size: 2.5rem;
-      margin-bottom: 1rem;
+      margin: 1rem 0;
       color: #333;
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+
+      @include respond(phone) {
+        font-size: 2rem;
+        text-align: center;
+      }
     }
 
     p {
       font-size: 1.2rem;
       margin-bottom: 1rem;
       color: #555;
+
+      @include respond(phone) {
+        font-size: 1rem;
+        text-align: center;
+      }
     }
 
     .price {
@@ -65,12 +93,31 @@
       font-weight: bold;
       margin-bottom: 1rem;
       color: #010101;
+
+      @include respond(phone) {
+        font-size: 1.5rem;
+        text-align: center;
+      }
+    }
+
+    h3 {
+      @include respond(phone) {
+        display: flex;
+        justify-content: center;
+      }
     }
 
     ul {
       list-style: none;
       padding: 0;
       margin: 1rem 0;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      @include respond(phone) {
+        justify-content: center;
+      }
 
       li {
         display: inline-block;
@@ -80,25 +127,40 @@
         border-radius: 5px;
         font-size: 1.1rem;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+        @include respond(phone) {
+          font-size: 1rem;
+          margin: 0.3rem;
+        }
       }
     }
 
     button {
-        width: 40%;
-      background: #ff3100;
-      color: #fff;
+      width: 40%;
+      background: #ff3633;
+      color: #000000;
       border: none;
       padding: 0.75rem 1.5rem;
       font-size: 1rem;
+      font-weight: 600;
       border-radius: 25px;
       cursor: pointer;
       transition: background 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
       margin-top: 1rem;
 
       &:hover {
-        background: #e24938;
+        background: #49660a;
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      @include respond(phone) {
+        display: flex;
+        align-self: center;
+        justify-content: center;
+        width: 30%;
+        padding: 0.75rem;
+        font-size: 1.2rem;
       }
     }
   }

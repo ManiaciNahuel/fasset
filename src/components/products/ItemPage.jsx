@@ -4,15 +4,16 @@ import remeraNegra from "../../assets/jpeg/remeraNegra2L.jpg";
 import remeraBlanca from "../../assets/jpeg/remeraBlanca2L.png";
 
 const items = [
-    { id: 1, title: 'Producto 1', price: 100, image: remeraNegra, description: 'Descripción del Producto 1', sizes: ['S', 'M', 'L'], colors: ['Rojo', 'Azul'] },
-    { id: 2, title: 'Producto 2', price: 150, image: remeraBlanca, description: 'Descripción del Producto 2', sizes: ['S', 'M', 'L', 'XL'], colors: ['Verde', 'Negro'] }
+    { id: 1, title: 'Remera Negra', price: 150, image: remeraNegra, description: 'Descripción del Remera Negra', sizes: ['M', 'L'] },
+    { id: 2, title: 'Remera Blanca', price: 150, image: remeraBlanca, description: 'Descripción del Remera Blanca', sizes: ['M', 'L']}
 ];
 
 const ItemPage = () => {
     const { id } = useParams();
     const item = items.find(item => item.id === parseInt(id));
-    const buttonOnClick = () => {
+    const agregarAlCarrito = () => {
         console.log('Agregar al carrito');
+        console.log(item);
     };
 
     if (!item) {
@@ -26,7 +27,7 @@ const ItemPage = () => {
                     <img src={item.image} alt={item.title} />
                 </div>
                 <div className="details">
-                    <h1>{item.title}</h1>
+                    <h2>{item.title}</h2>
                     <p>{item.description}</p>
                     <div>
                         <h3>Talles disponibles:</h3>
@@ -34,15 +35,10 @@ const ItemPage = () => {
                             {item.sizes.map(size => <li key={size}>{size}</li>)}
                         </ul>
                     </div>
-                    <div>
-                        <h3>Colores disponibles:</h3>
-                        <ul>
-                            {item.colors.map(color => <li key={color}>{color}</li>)}
-                        </ul>
-                    </div>
+                    
                     <div className="price">Precio: ${item.price}</div>
 
-                    <button onClick={buttonOnClick}>Agregar al carrito</button>
+                    <button onClick={agregarAlCarrito(item)}>Comprar</button>
                 </div>
             </div>
         </div>

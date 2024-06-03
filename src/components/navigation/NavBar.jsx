@@ -51,7 +51,7 @@ export const NavBar = () => {
               </a>
             </li>
           </ul>
-          {/* Hamburger menu */}
+          {/* Hamburger menu para pantallas chicas*/}
           <div className="header__main-ham-menu-cont">
             <button onClick={() => setIsOpen(!isOpen)}
               className={`${isOpen ? 'btn-open' : ''}`}>

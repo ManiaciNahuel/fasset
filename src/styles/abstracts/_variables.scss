@@ -8,10 +8,11 @@ $curveBorder: 25px;
 
 @font-face {
   font-family: 'MyCustomFont';
-  src: url('../NEOMETRA-FFP.ttf') format('truetype');
-  font-weight: normal;
+  src: url('../fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900;
   font-style: normal;
 }
+
 
 body {
   font-family: 'MyCustomFont', sans-serif;
