@@ -1,6 +1,7 @@
 .section {
   position: relative;
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
   text-align: center;
   overflow: hidden;
@@ -17,6 +18,10 @@
     @include respond(tab-port) {
       grid-template-columns: 1fr;
       grid-gap: 8rem;
+    }
+
+    @include respond(phone) {
+      margin: 1rem;
     }
 
     &-subtitle {
@@ -43,6 +48,24 @@
 
       &:last-child {
         margin-bottom: 4rem;
+      }
+    }
+  }
+
+  &__banner {
+    margin: 2rem 0;
+
+    img {
+      width: 100rem;
+      height: auto;
+      object-fit: cover;
+
+      @include respond(tab-port) {
+        width: 95%;
+      }
+
+      @include respond(phone) {
+        width: 95%;
       }
     }
   }
@@ -150,7 +173,79 @@
         }
       }
     }
+
+    @include respond(tab-port) {
+      margin: 1rem;
+    padding: 20px;
+
+    .title {
+      font-size: 26px;
+    }
+
+    .desc {
+      font-size: 15px;
+    }
+
+    .cta {
+      flex-direction: column;
+      padding: 15px 0;
+
+      .price {
+        font-size: 20px;
+      }
+
+      .estado {
+        font-size: 14px;
+        margin-left: 0;
+        margin-top: 5px;
+      }
+
+      .btn-vermas {
+        font-size: 12px;
+        padding: 10px 15px;
+        margin-top: 10px;
+      }
+    }
+
+    img {
+      max-height: 200px;
+    }
   }
+
+    @include respond(phone) {
+      margin: 0.5rem;
+    padding: 15px;
+
+    .title {
+      font-size: 24px;
+    }
+
+    .desc {
+      font-size: 14px;
+    }
+
+    .cta {
+      padding: 10px 0;
+
+      .price {
+        font-size: 18px;
+      }
+
+      .estado {
+        font-size: 14px;
+      }
+
+      .btn-vermas {
+        font-size: 11px;
+        padding: 8px 12px;
+      }
+    }
+
+    img {
+      max-height: 180px;
+    }
+  }
+}
 
   &:before {
     content: "";

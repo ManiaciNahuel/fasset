@@ -35,7 +35,6 @@ const ItemPage = () => {
                             {item.sizes.map(size => <li key={size}>{size}</li>)}
                         </ul>
                     </div>
-                    
                     <div className="price">Precio: ${item.price}</div>
 
                     <button onClick={agregarAlCarrito(item)}>Comprar</button>
