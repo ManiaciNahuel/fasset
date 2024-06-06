@@ -1,16 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import remeraNegra from "../../assets/jpeg/remeraNegra2L.jpg";
-import remeraBlanca from "../../assets/jpeg/remeraBlanca2L.png";
+import remeraNegraFront from "../../assets/jpeg/remeraNegra2L-front.jpg";
+import remeraNegraBack from "../../assets/jpeg/remeraNegra2L-back.jpg";
+import remeraBlancaFront from "../../assets/jpeg/remeraBlanca2L-front.png";
+import remeraBlancaBack from "../../assets/jpeg/remeraBlanca2L-back.png";
+import tablaDeTalles from "../../assets/jpeg/tabladetalles.jpg";
 
 const items = [
-    { id: 1, title: 'Remera Negra', price: 150, image: remeraNegra, description: 'Descripción del Remera Negra', sizes: ['M', 'L'] },
-    { id: 2, title: 'Remera Blanca', price: 150, image: remeraBlanca, description: 'Descripción del Remera Blanca', sizes: ['M', 'L']}
+    { id: 1, title: 'Remera Negra', price: 150, images: [remeraNegraFront, remeraNegraBack, tablaDeTalles], description: 'Descripción del Remera Negra', sizes: ['M', 'L']
+    },
+    { id: 2, title: 'Remera Blanca', price: 150, images: [remeraBlancaFront, remeraBlancaBack, tablaDeTalles], description: 'Descripción del Remera Blanca', sizes: ['M', 'L'] }
 ];
 
 const ItemPage = () => {
     const { id } = useParams();
     const item = items.find(item => item.id === parseInt(id));
+
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    const showNextImage = () => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % item.images.length);
+    };
+
+    const showPreviousImage = () => {
+        setCurrentImageIndex((prevIndex) => (prevIndex - 1 + item.images.length) % item.images.length);
+    };
+
     const agregarAlCarrito = () => {
         console.log('Agregar al carrito');
         console.log(item);
@@ -24,7 +39,11 @@ const ItemPage = () => {
         <div className="item-page">
             <div className="container">
                 <div className="image">
-                    <img src={item.image} alt={item.title} />
+                    <img src={item.images[currentImageIndex]} alt={item.title} />
+                    <div className="image-nav">
+                        <button className="nav-button" onClick={showPreviousImage}>⬅</button>
+                        <button className="nav-button" onClick={showNextImage}>⮕ </button>
+                    </div>
                 </div>
                 <div className="details">
                     <h2>{item.title}</h2>
