@@ -7,9 +7,9 @@ import remeraBlancaBack from "../../assets/jpeg/remeraBlanca2L-back.png";
 import tablaDeTalles from "../../assets/jpeg/tabladetalles.jpg";
 
 const items = [
-    { id: 1, title: 'Remera Negra', price: 150, images: [remeraNegraFront, remeraNegraBack, tablaDeTalles], description: 'Descripción del Remera Negra', sizes: ['M', 'L']
+    { id: 1, title: 'Remera Negra', price: 150, images: [remeraNegraFront, remeraNegraBack, tablaDeTalles], description: 'Descripción del Remera Negra Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis commodi optio perferendis nisi eveniet odio veniam ratione cum accusantium distinctio tempore consectetur quis assumenda nulla quibusdam vero, modi consequatur error.', sizes: ['M', 'L']
     },
-    { id: 2, title: 'Remera Blanca', price: 150, images: [remeraBlancaFront, remeraBlancaBack, tablaDeTalles], description: 'Descripción del Remera Blanca', sizes: ['M', 'L'] }
+    { id: 2, title: 'Remera Blanca', price: 150, images: [remeraBlancaFront, remeraBlancaBack, tablaDeTalles], description: 'Descripción del Remera Blanca Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis commodi optio perferendis nisi eveniet odio veniam ratione cum accusantium distinctio tempore consectetur quis assumenda nulla quibusdam vero, modi consequatur error.', sizes: ['M', 'L'] }
 ];
 
 const ItemPage = () => {
@@ -54,7 +54,7 @@ const ItemPage = () => {
                             {item.sizes.map(size => <li key={size}>{size}</li>)}
                         </ul>
                     </div>
-                    <div className="price">Precio: ${item.price}</div>
+                    <div className="price">Precio: <span className='price-number'>${item.price}</span></div>
 
                     <button onClick={agregarAlCarrito(item)}>Comprar</button>
                 </div>
