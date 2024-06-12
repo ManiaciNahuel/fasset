@@ -54,18 +54,24 @@
 
   &__banner {
     margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 
     img {
-      width: 100rem;
+      max-width: 20%;
       height: auto;
+      margin: 0.5rem;
       object-fit: cover;
 
       @include respond(tab-port) {
-        width: 95%;
+        max-width: 32%;
       }
 
       @include respond(phone) {
-        width: 95%;
+        max-width: 45%;
+        margin: 0.5rem 0;
       }
     }
   }
