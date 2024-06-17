@@ -64,6 +64,7 @@
         background: rgba(0, 0, 0, 0.5);
         color: white;
         border: none;
+        border-radius: 5px;
         padding: 0.5rem 1rem;
         cursor: pointer;
         transition: background 0.3s ease-in-out;
@@ -77,6 +78,9 @@
         @include respond(phone) {
           padding: 0.3rem 0.7rem;
           font-size: 1.2rem;
+          &:hover {
+          background: rgba(0, 0, 0, 0.5);
+        }
         }
       }
     }

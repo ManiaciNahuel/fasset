@@ -2,7 +2,6 @@ import React from 'react'
 import { Item } from '../products/Item'
 import remeraNegra from "../../assets/jpeg/remeraNegra2L.jpg"
 import remeraBlanca from "../../assets/jpeg/remeraBlanca2L.png"
-import baner from "../../assets/png/Untitled-1.png"
 import baner_10off from "../../assets/png/10off.png"
 import baner_envio from "../../assets/png/envios.png"
 import baner_tarjetas from "../../assets/png/cards.png"
