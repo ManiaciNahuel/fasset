@@ -59,8 +59,10 @@ const ItemPage = () => {
                         </ul>
                     </div>
                     <div className="price">Precio: <span className='price-number'>${item.price}</span></div>
-
-                    <button onClick={agregarAlCarrito(item)}>Comprar</button>
+                    <div className='botones'>
+                        <button onClick={agregarAlCarrito(item)}>Comprar ya</button>
+                        <button onClick={agregarAlCarrito(item)}>Agregar al carrito</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import logo from "../../assets/images/Logotipo.jpg";
-import userIcon from "../../assets/png/user1.png";
-import lupaIcon from "../../assets/png/lupa.png";
+/* import userIcon from "../../assets/png/user1.png";
+import lupaIcon from "../../assets/png/lupa.png"; */
 import cartIcon from "../../assets/png/shopping-cart.png";
 import hamMenu from "../../assets/svg/ham-menu.svg";
 import hamMenuClose from "../../assets/svg/ham-menu-close.svg";
@@ -24,7 +24,7 @@ export const NavBar = () => {
         </div>
         <div className="header__main">
           <ul className="header__links">
-            <li className="header__link-wrapper">
+           {/*  <li className="header__link-wrapper">
               <a href="./#section" className="header__link">
                 <div className="search-icon-container">
                 <img
@@ -41,7 +41,7 @@ export const NavBar = () => {
                 alt="user-icon"
             />
               </a>
-            </li>
+            </li> */}
              <li className="header__link-wrapper">
               <a href="./#section" className="header__link">
                 <img

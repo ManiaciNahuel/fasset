@@ -11,11 +11,14 @@
   font-weight: bold;
 
   .container {
+    box-shadow: 0px 10px 30px 5px rgba(0, 0, 0, 0.77), 0 10px 15px rgba(0, 0, 0, 0.2);
+    background-color: lighten($colorPrimario, 10%);
+    
     display: flex;
     background: rgba(255, 255, 255, 0.9);
     padding: 2rem;
     border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); */
     max-width: 1200px;
     width: 60%;
 
@@ -177,11 +180,18 @@
       }
     }
 
+    .botones {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
     button {
-      background: #ff3633;
-      color: #000000;
+      color: #ffffffc5;
+      background: $colorTerciario;
+      border: 0.1em solid $colorTerciario;
       border: none;
-      padding: 0.75rem 1.8rem;
+      padding: 0.75rem 0.75rem;
       font-size: 1.5rem;
       font-weight: 700;
       border-radius: 25px;
@@ -192,8 +202,9 @@
       align-self: flex-end;
       justify-self: center;
 
-      &:hover {
-        background: #49660a;
+      &:hover {background: #e6e6e6e4;
+      color: #000000;
+        border: 0.1em solid rgba(0, 0, 0, 0.77);
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       }
