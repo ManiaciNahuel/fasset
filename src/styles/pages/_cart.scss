@@ -4,6 +4,25 @@
   margin: 0 auto;
   min-height: 100vh;
   font-size: large;
+  &__popup {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background-color: #28a745;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      animation: fadeInOut 3s forwards;
+    }
+
+  @keyframes fadeInOut {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+  }
 
 
   &__title {
@@ -103,7 +122,7 @@
     }
 
     &-remove {
-      background-color: #ff6f61;
+      background-color: #8e61ff;
       color: white;
       border: none;
       padding: 0.5rem 1rem;
@@ -114,6 +133,86 @@
       &:hover {
         background-color: #ff3f30;
       }
+    }
+    &-remove1 {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: #61ff66;
+      color: rgb(0, 0, 0);
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #ff3f30;
+      }
+    }
+  }
+}
+
+.checkout-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+  font-size: large;
+
+  &__title {
+    margin-top: 10rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  &__subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  &__form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__input {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  &__button {
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #ff3f30;
     }
   }
 }

@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ItemPage from "./components/products/ItemPage";
 import CartPage from "./components/cart/CartPage.jsx"; // Asegúrate de ajustar el path según la estructura de tu proyecto
 import { CartProvider } from "./context/CartContext.jsx";
+import Checkout from "./components/cart/Checkout.jsx";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
             <Route path="/section" element={<Section />} />
             <Route path="/item/:id" element={<ItemPage />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Routes>
           <Footer />
         </CartProvider>

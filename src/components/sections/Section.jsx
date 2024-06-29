@@ -24,7 +24,7 @@ export const Section = () => {
           <img src={baner_10off} alt="banerPublicidades" />
           <img src={baner_envio} alt="banerPublicidades" />
           <img src={baner_tarjetas} alt="banerPublicidades" />
-        </div>
+        </div> 
       </div>
     </section>
 

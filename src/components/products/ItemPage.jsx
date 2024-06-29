@@ -16,7 +16,7 @@ const ItemPage = () => {
     const { id } = useParams();
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [selectedSize, setSelectedSize] = useState(null); // Estado para el tamaño seleccionado
-    const { addToCart } = useCart();
+    const { addToCart, successMessage } = useCart();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -38,7 +38,6 @@ const ItemPage = () => {
             alert('Por favor selecciona un tamaño antes de agregar al carrito.');
         }
     };
-
     const handleBuyNow = () => {
         if (selectedSize) {
             // Aquí deberías navegar al checkout
@@ -56,6 +55,11 @@ const ItemPage = () => {
 
     return (
         <div className="item-page">
+            {successMessage && (
+                <div className="item-page__popup">
+                    {successMessage}
+                </div>
+            )}
             <div className="container">
                 <div className="image">
                     <img src={item.images[currentImageIndex]} alt={item.title} />

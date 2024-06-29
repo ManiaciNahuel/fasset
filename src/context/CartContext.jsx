@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useReducer, useState } from 'react';
 
 const CartContext = createContext();
 
@@ -15,9 +15,12 @@ const cartReducer = (state, action) => {
 
 export const CartProvider = ({ children }) => {
     const [cart, dispatch] = useReducer(cartReducer, []);
+    const [successMessage, setSuccessMessage] = useState('');
 
     const addToCart = (item) => {
         dispatch({ type: 'ADD_TO_CART', payload: item });
+        setSuccessMessage(`${item.title} agregado al carrito con éxito`);
+        setTimeout(() => setSuccessMessage(''), 3000); // El mensaje desaparece después de 3 segundos
     };
 
     const removeFromCart = (item) => {
@@ -25,7 +28,7 @@ export const CartProvider = ({ children }) => {
     };
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+        <CartContext.Provider value={{ cart, addToCart, removeFromCart, successMessage }}>
             {children}
         </CartContext.Provider>
     );
