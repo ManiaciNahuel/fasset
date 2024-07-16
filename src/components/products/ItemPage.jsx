@@ -5,7 +5,7 @@ import remeraNegraBack from "../../assets/jpeg/remeraNegra2L-back.jpg";
 import remeraBlancaFront from "../../assets/jpeg/remeraBlanca2L-front.png";
 import remeraBlancaBack from "../../assets/jpeg/remeraBlanca2L-back.png";
 import tablaDeTalles from "../../assets/jpeg/tabladetalles.jpg";
-import { useCart } from '../../context/CartContext';
+import { useCart } from '../../context/CartContext'; // Asegúrate de ajustar el path según la estructura de tu proyecto
 
 const items = [
     { id: 1, title: 'Black T-Shirt', price: 25000, images: [remeraNegraFront, remeraNegraBack, tablaDeTalles], description: ['100% algodón', 'Algodón premium', 'Cuello medio', 'Mangas oversize'], sizes: ['1', '2'] },
@@ -16,7 +16,7 @@ const ItemPage = () => {
     const { id } = useParams();
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [selectedSize, setSelectedSize] = useState(null); // Estado para el tamaño seleccionado
-    const { addToCart, successMessage } = useCart();
+    const { successMessage } = useCart();
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -30,18 +30,10 @@ const ItemPage = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex - 1 + item.images.length) % item.images.length);
     };
 
-    const handleAddToCart = () => {
-        if (selectedSize) {
-            addToCart({ ...item, size: selectedSize }); // Agregar el tamaño seleccionado al objeto del carrito
-        } else {
-            alert('Por favor selecciona un tamaño antes de agregar al carrito.');
-        }
-    };
-
     const handleBuyNow = () => {
         if (selectedSize) {
             const whatsappMessage = `Hola! Vi esta remera ${item.title} en su página y estaba interesado en comprar una talle ${selectedSize}.`;
-            const whatsappUrl = `https://wa.me/5493517045448?text=${encodeURIComponent(whatsappMessage)}`;
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(whatsappMessage)}`;
             window.open(whatsappUrl, '_blank');
         } else {
             alert('Por favor selecciona un tamaño antes de proceder con la compra.');
@@ -94,7 +86,7 @@ const ItemPage = () => {
                     <div className="price">Precio: <span className='price-number'>${item.price}</span></div>
                     <div className='botones'>
                         <button onClick={handleBuyNow}>Comprar ya</button>
-                        <button onClick={handleAddToCart}>Agregar al carrito</button>
+                        {/* <button onClick={handleAddToCart}>Agregar al carrito</button> */}
                     </div>
                 </div>
             </div>
