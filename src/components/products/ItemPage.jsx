@@ -94,7 +94,7 @@ const ItemPage = () => {
                     <div className="price">Precio: <span className='price-number'>${item.price}</span></div>
                     <div className='botones'>
                         <button onClick={handleBuyNow}>Comprar ya</button>
-                        {/* <button onClick={handleAddToCart}>Agregar al carrito</button> */}
+                        <button onClick={handleAddToCart}>Agregar al carrito</button>
                     </div>
                 </div>
             </div>
