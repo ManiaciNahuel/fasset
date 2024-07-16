@@ -9,7 +9,7 @@
   text-align: left;
   font-family: 'MyCustomFont', sans-serif;
   font-weight: bold;
-
+  font-size: 1.2rem;
   .container {
     box-shadow: 0px 10px 30px 5px rgba(0, 0, 0, 0.77), 0 10px 15px rgba(0, 0, 0, 0.2);
     background-color: lighten($colorPrimario, 10%);
@@ -25,6 +25,12 @@
       width: 100%;
       padding: 2rem 1rem;
     }
+  }
+  .caracteristicas {
+    font-weight: 500;
+    /* li {
+      list-style:circle;
+    } */
   }
 
   .image {
@@ -172,7 +178,7 @@
       }
     }
 
-    ul {
+    .talles {
       list-style: none;
       padding: 0;
       margin: 1rem 0;
