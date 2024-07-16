@@ -30,13 +30,13 @@ const ItemPage = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex - 1 + item.images.length) % item.images.length);
     };
 
-    const handleAddToCart = () => {
+    /* const handleAddToCart = () => {
         if (selectedSize) {
             addToCart({ ...item, size: selectedSize }); // Agregar el tamaño seleccionado al objeto del carrito
         } else {
             alert('Por favor selecciona un tamaño antes de agregar al carrito.');
         }
-    };
+    }; */
 
     const handleBuyNow = () => {
         if (selectedSize) {
