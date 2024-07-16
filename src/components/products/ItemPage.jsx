@@ -5,6 +5,7 @@ import remeraNegraBack from "../../assets/jpeg/remeraNegra2L-back.jpg";
 import remeraBlancaFront from "../../assets/jpeg/remeraBlanca2L-front.png";
 import remeraBlancaBack from "../../assets/jpeg/remeraBlanca2L-back.png";
 import tablaDeTalles from "../../assets/jpeg/tabladetalles.jpg";
+import { useCart } from '../../context/CartContext';
 
 const items = [
     { id: 1, title: 'Black T-Shirt', price: 25000, images: [remeraNegraFront, remeraNegraBack, tablaDeTalles], description: ['100% algodón', 'Algodón premium', 'Cuello medio', 'Mangas oversize'], sizes: ['1', '2'] },
@@ -15,7 +16,7 @@ const ItemPage = () => {
     const { id } = useParams();
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [selectedSize, setSelectedSize] = useState(null); // Estado para el tamaño seleccionado
-    /* const { addToCart, successMessage } = useCart(); */
+    const { addToCart, successMessage } = useCart();
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -29,13 +30,13 @@ const ItemPage = () => {
         setCurrentImageIndex((prevIndex) => (prevIndex - 1 + item.images.length) % item.images.length);
     };
 
-    /* const handleAddToCart = () => {
+    const handleAddToCart = () => {
         if (selectedSize) {
             addToCart({ ...item, size: selectedSize }); // Agregar el tamaño seleccionado al objeto del carrito
         } else {
             alert('Por favor selecciona un tamaño antes de agregar al carrito.');
         }
-    }; */
+    };
 
     const handleBuyNow = () => {
         if (selectedSize) {
