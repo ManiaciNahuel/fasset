@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import remeraNegraFront from "../../assets/jpeg/remeraNegra2L-front.jpg";
-import remeraNegraBack from "../../assets/jpeg/remeraNegra2L-back.jpg";
-import remeraBlancaFront from "../../assets/jpeg/remeraBlanca2L-front.png";
-import remeraBlancaBack from "../../assets/jpeg/remeraBlanca2L-back.png";
+import remeraNegraFront from "../../assets/images/rem_negra_frente.png";
+import remeraNegraBack from "../../assets/images/rem_negra_back.png";
+import remeraBlancaFront from "../../assets/images/rem_blanca_frente.png";
+import remeraBlancaBack from "../../assets/images/blanca_back.png";
 import tablaDeTalles from "../../assets/jpeg/tabladetalles.jpg";
 import { useCart } from '../../context/CartContext'; // Asegúrate de ajustar el path según la estructura de tu proyecto
 
