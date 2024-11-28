@@ -8,6 +8,7 @@ import ItemPage from "./components/products/ItemPage";
 import CartPage from "./components/cart/CartPage.jsx"; // Asegúrate de ajustar el path según la estructura de tu proyecto
 import { CartProvider } from "./context/CartContext.jsx";
 import Checkout from "./components/cart/Checkout.jsx";
+import TestConnection from "./conection/back.jsx"; // Importar el componente de prueba
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <Route path="/item/:id" element={<ItemPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/test" element={<TestConnection />} />
           </Routes>
           <Footer />
         </CartProvider>
