@@ -1,33 +1,53 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import remeraNegraFront from "../../assets/images/rem_negra_frente.png";
-import remeraNegraBack from "../../assets/images/rem_negra_back.png";
-import remeraBlancaFront from "../../assets/images/rem_blanca_frente.png";
-import remeraBlancaBack from "../../assets/images/blanca_back.png";
-import tablaDeTalles from "../../assets/jpeg/tabladetalles.jpg";
-import { useCart } from '../../context/CartContext'; // Asegúrate de ajustar el path según la estructura de tu proyecto
-
-const items = [
-    { id: 1, title: 'Black T-Shirt', price: 25000, images: [remeraNegraFront, remeraNegraBack, tablaDeTalles], description: ['100% algodón', 'Algodón premium', 'Cuello medio', 'Mangas oversize'], sizes: ['1', '2'] },
-    { id: 2, title: 'White T-Shirt', price: 25000, images: [remeraBlancaFront, remeraBlancaBack, tablaDeTalles], description: ['100% algodón', 'Algodón premium', 'Cuello medio', 'Mangas oversize'], sizes: ['1', '2'] }
-];
+import { useCart } from '../../context/CartContext'; 
 
 const ItemPage = () => {
-    const { id } = useParams();
+    const { id } = useParams(); // Obtener ID del producto desde la URL
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [selectedSize, setSelectedSize] = useState(null); // Estado para el tamaño seleccionado
+    const [selectedSize, setSelectedSize] = useState(null); // Tamaño seleccionado
+    const [item, setItem] = useState(null); // Producto actual
+    const [error, setError] = useState(null);
     const { successMessage } = useCart();
 
+    const BACKEND_URL = `https://fassetback-production.up.railway.app/api/productos/${id}`;
+
     useEffect(() => {
+        // Fetch del producto desde el backend
+        const fetchProducto = async () => {
+            try {
+                const response = await fetch(BACKEND_URL);
+                if (!response.ok) {
+                    throw new Error("Error al obtener el producto");
+                }
+                const data = await response.json();
+                // Adaptar los datos del backend al formato esperado
+                setItem({
+                    id: data.id,
+                    title: data.nombre,
+                    description: data.descripcion.split(", "), // Separar por comas
+                    price: data.precio,
+                    images: [data.imagen1, data.imagen2, data.imagen3, data.imagen4].filter(Boolean), // Filtrar imágenes nulas
+                    sizes: data.stock.map(stockItem => stockItem.talle), // Obtener talles
+                });
+            } catch (error) {
+                setError(error.message);
+            }
+        };
+        fetchProducto();
         window.scrollTo(0, 0);
-    }, []);
+    }, [BACKEND_URL]);
 
     const showNextImage = () => {
-        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % item.images.length);
+        if (item && item.images.length > 0) {
+            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % item.images.length);
+        }
     };
 
     const showPreviousImage = () => {
-        setCurrentImageIndex((prevIndex) => (prevIndex - 1 + item.images.length) % item.images.length);
+        if (item && item.images.length > 0) {
+            setCurrentImageIndex((prevIndex) => (prevIndex - 1 + item.images.length) % item.images.length);
+        }
     };
 
     const handleBuyNow = () => {
@@ -40,10 +60,12 @@ const ItemPage = () => {
         }
     };
 
-    const item = items.find(item => item.id === parseInt(id));
+    if (error) {
+        return <div className="error">Error: {error}</div>;
+    }
 
     if (!item) {
-        return <div>Producto no encontrado</div>;
+        return <div className="loading">Cargando...</div>;
     }
 
     return (
@@ -63,15 +85,15 @@ const ItemPage = () => {
                 </div>
                 <div className="details">
                     <h2>{item.title}</h2>
-                    <h3>Caracteristicas:</h3>
-                    <ul className='caracteristicas'>
+                    <h3>Características:</h3>
+                    <ul className="caracteristicas">
                         {item.description.map((line, index) => (
                             <li key={index}>{line}</li>
                         ))}
                     </ul>
                     <div>
                         <h3>Talles disponibles:</h3>
-                        <ul className='talles'>
+                        <ul className="talles">
                             {item.sizes.map(size => (
                                 <li
                                     key={size}
@@ -83,8 +105,8 @@ const ItemPage = () => {
                             ))}
                         </ul>
                     </div>
-                    <div className="price">Precio: <span className='price-number'>${item.price}</span></div>
-                    <div className='botones'>
+                    <div className="price">Precio: <span className="price-number">${item.price}</span></div>
+                    <div className="botones">
                         <button onClick={handleBuyNow}>Comprar ya</button>
                         {/* <button onClick={handleAddToCart}>Agregar al carrito</button> */}
                     </div>
