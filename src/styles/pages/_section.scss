@@ -99,9 +99,10 @@
     }
 
     img {
+      aspect-ratio: 7/4;
       max-height: 220px;
       width: 100%;
-      object-fit: cover;
+      object-fit:contain;
     }
 
     .title {
@@ -125,8 +126,8 @@
 
       .price {
         color: $colorTerciario;
-        font-size: 22px;
-        font-weight: 600;
+        font-size: 18px;
+        font-weight: 500;
         transition: color 0.3s ease-in-out;
         margin: 0;
         display: flex;
@@ -134,8 +135,8 @@
       }
 
       .estado {
-        font-weight: 300;
-        font-size: 16px;
+        font-weight: 400;
+        font-size: 14px;
         color: #666;
         margin-left: 15px;
       }
@@ -143,7 +144,7 @@
       .btn-vermas {
         position: relative;
         z-index: 1;
-        font-size: 13px;
+        font-size: 12px;
         font-weight: 600;
         text-transform: uppercase;
         color: $colorTerciario;
