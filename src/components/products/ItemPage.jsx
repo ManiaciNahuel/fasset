@@ -74,28 +74,35 @@ const ItemPage = () => {
                     <div>
                         <h3>Talles disponibles:</h3>
                         <ul className="talles">
-                            {console.log("Producto actual:", item)} {/* Log para depuración */}
-                            {console.log("Stock:", item?.stock)} 
                             {item.sizes.map(size => {
-                                // Validar si `stock` existe y es un array
                                 const stockForSize = Array.isArray(item.stock)
                                     ? item.stock.find(stock => stock.talle === size)
                                     : null;
-                                const hasStock = stockForSize && stockForSize.cantidad > 0;
+                                const cantidad = stockForSize ? stockForSize.cantidad : 0;
+                                const hasStock = cantidad > 0;
 
                                 return (
                                     <li
                                         key={size}
                                         onClick={() => hasStock && setSelectedSize(size)}
-                                        className={`${selectedSize === size ? 'selected' : ''} ${!hasStock ? 'no-stock' : ''}`}
+                                        className={`talle-item ${hasStock ? 'available' : 'no-stock'} ${selectedSize === size ? 'selected' : ''}`}
                                     >
-                                        {size} {hasStock ? "(Disponible)" : "(Sin stock)"}
+                                        {size}
+                                        {hasStock && (
+                                            <span className="stock-tooltip">
+                                                {cantidad <= 10 ? `¡Últimas ${cantidad}!` : `${cantidad} disponibles`}
+                                            </span>
+                                        )}
+                                        {!hasStock && (
+                                            <span className="stock-tooltip">Sin stock</span>
+                                        )}
                                     </li>
                                 );
                             })}
                         </ul>
 
                     </div>
+
                     <div className="price">Precio: <span className="price-number">${item.price}</span></div>
                     <div className="botones">
                         <button onClick={handleBuyNow} disabled={!selectedSize}>

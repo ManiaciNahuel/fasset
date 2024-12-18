@@ -200,9 +200,9 @@
         padding: 0.5rem 1rem;
         background: rgba(245, 245, 245, 0.8);
         border-radius: 5px;
-        font-size: 1.1rem;
+        font-size: 1.5rem;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-
+        font-weight: bolder;
 
         @include respond(phone) {
           font-size: 1rem;
@@ -261,5 +261,74 @@
     filter: blur(0px);
     z-index: -1;
     opacity: 0.6;
+  }
+}
+
+.talles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0;
+  padding: 0;
+  list-style: none;
+
+  .talle-item {
+    position: relative;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: all 0.2s ease-in-out;
+
+    &.available {
+      border-color: #28a745;
+      color: #333;
+
+      &:hover {
+        border-color: #28a745;
+        background-color: #e6f4ea;
+      }
+    }
+
+    &.no-stock {
+      border-color: #ccc;
+      color: #ccc;
+    }
+
+    &.selected {
+      border-color: #007bff !important;
+      background-color: #28a745 !important;
+      color: #fff !important;
+      font-weight: bold;
+
+      &:hover {
+        background-color: #e6f4ea !important; /* Más oscuro al hacer hover */
+        color: #000000 !important;
+
+      }
+    }
+
+    // Stock Tooltip al hacer hover
+    .stock-tooltip {
+      display: none;
+      position: absolute;
+      top: -35px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 12px;
+      white-space: nowrap;
+      z-index: 10;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    &:hover .stock-tooltip {
+      display: block; // Mostrar tooltip al hover
+    }
   }
 }
