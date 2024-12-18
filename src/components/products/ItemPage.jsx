@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useCart } from '../../context/CartContext'; 
+import { useCart } from '../../context/CartContext';
 import { useProducts } from '../../context/ProductsContext';
 
 const ItemPage = () => {
@@ -65,24 +65,42 @@ const ItemPage = () => {
                             <li key={index}>{line}</li>
                         ))}
                     </ul>
+                    <h3>Especificaciones:</h3>
+                    <ul className="caracteristicas">
+                        {item.especificacion.map((line, index) => (
+                            <li key={index}>{line}</li>
+                        ))}
+                    </ul>
                     <div>
                         <h3>Talles disponibles:</h3>
                         <ul className="talles">
-                            {item.sizes.map(size => (
-                                <li
-                                    key={size}
-                                    onClick={() => setSelectedSize(size)}
-                                    className={selectedSize === size ? 'selected' : ''}
-                                >
-                                    {size}
-                                </li>
-                            ))}
+                            {console.log("Producto actual:", item)} {/* Log para depuración */}
+                            {console.log("Stock:", item?.stock)} 
+                            {item.sizes.map(size => {
+                                // Validar si `stock` existe y es un array
+                                const stockForSize = Array.isArray(item.stock)
+                                    ? item.stock.find(stock => stock.talle === size)
+                                    : null;
+                                const hasStock = stockForSize && stockForSize.cantidad > 0;
+
+                                return (
+                                    <li
+                                        key={size}
+                                        onClick={() => hasStock && setSelectedSize(size)}
+                                        className={`${selectedSize === size ? 'selected' : ''} ${!hasStock ? 'no-stock' : ''}`}
+                                    >
+                                        {size} {hasStock ? "(Disponible)" : "(Sin stock)"}
+                                    </li>
+                                );
+                            })}
                         </ul>
+
                     </div>
                     <div className="price">Precio: <span className="price-number">${item.price}</span></div>
                     <div className="botones">
-                        <button onClick={handleBuyNow}>Comprar ya</button>
-                        {/* <button onClick={handleAddToCart}>Agregar al carrito</button> */}
+                        <button onClick={handleBuyNow} disabled={!selectedSize}>
+                            Comprar ya
+                        </button>
                     </div>
                 </div>
             </div>

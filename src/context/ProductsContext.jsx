@@ -24,9 +24,11 @@ export const ProductsProvider = ({ children }) => {
           id: product.id,
           title: product.nombre,
           description: product.descripcion.split(", "), // Separar por comas
+          especificacion: product.especificaciones.split(", "), 
           price: product.precio,
           images: [product.imagen1, product.imagen2, product.imagen3, product.imagen4, product.imagen5 ].filter(Boolean),
           sizes: product.stock.map(stockItem => stockItem.talle), // Extraer talles
+          stock: product.stock || [],
         }));
 
         setProducts(formattedProducts);
