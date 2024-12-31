@@ -71,7 +71,7 @@ const AdminPage = () => {
             <h1>Administración de Stock</h1>
             {products.map(product => (
                 <div key={product.id} className="product-card">
-                    <h2 className='product-card-title'>{product.nombre}{product.id}</h2>
+                    <h2 className='product-card-title'>{product.nombre} - ID: {product.id}</h2>
                     <ul>
                         {product.stock.map(({ talle, cantidad }) => (
                             <li key={talle}>
