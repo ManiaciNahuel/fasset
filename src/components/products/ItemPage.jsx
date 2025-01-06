@@ -31,7 +31,7 @@ const ItemPage = () => {
     const handleBuyNow = () => {
         if (selectedSize) {
             const whatsappMessage = `Hola! Vi esta remera ${item.title} en su página y estaba interesado en comprar una talle ${selectedSize}.`;
-            const whatsappUrl = `https://wa.me/+5493514085841?text=${encodeURIComponent(whatsappMessage)}`;
+            const whatsappUrl = `https://wa.me/+5493512185195?text=${encodeURIComponent(whatsappMessage)}`;
             window.open(whatsappUrl, '_blank');
         } else {
             alert('Por favor selecciona un tamaño antes de proceder con la compra.');

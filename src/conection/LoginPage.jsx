@@ -11,26 +11,29 @@ const LoginPage = ({ onLogin }) => {
         e.preventDefault();
 
         try {
-            const response = await fetch("https://fassetback-production.up.railway.app/api/auth/login", {
-                method: "POST",
+            const response = await fetch('https://fassetback-production.up.railway.app/api/auth/login', {
+                method: 'POST',
                 headers: {
-                    "Content-Type": "application/json",
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username, password }),
+                body: JSON.stringify({ email: username, password }),
             });
 
-            if (response.ok) {
-                const data = await response.json();
-                console.log("Login exitoso:", data);
-                onLogin(); // Marca como autenticado
-                navigate("/admin"); // Redirige a la página de administración
-            } else {
-                const errorData = await response.json();
-                setError(errorData.error || "Error al iniciar sesión");
+            if (!response.ok) {
+                throw new Error('Credenciales inválidas');
             }
-        } catch (err) {
-            setError("Error al conectar con el servidor");
-            console.error("Error:", err);
+
+            const data = await response.json();
+            console.log('Login exitoso:', data);
+
+            // Guardar datos en localStorage
+            localStorage.setItem('isAdmin', data.isAdmin);
+            localStorage.setItem('userId', data.userId);
+
+            navigate('/'); // Redirige al inicio o a una página protegida
+        } catch (error) {
+            console.error('Error al iniciar sesión:', error);
+            setError('Usuario o contraseña incorrectos');
         }
     };
 
@@ -41,7 +44,7 @@ const LoginPage = ({ onLogin }) => {
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
-                    placeholder="Usuario"
+                    placeholder="Correo electrónico"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                     required

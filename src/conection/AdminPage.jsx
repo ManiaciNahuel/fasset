@@ -1,12 +1,25 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const AdminPage = () => {
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);
+    const [isAdmin, setIsAdmin] = useState(false);
+    const navigate = useNavigate();
 
     const BACKEND_URL = 'https://fassetback-production.up.railway.app';
 
     useEffect(() => {
+        // Verificar si el usuario es administrador
+        const adminStatus = localStorage.getItem('isAdmin') === 'true';
+        setIsAdmin(adminStatus);
+
+        if (!adminStatus) {
+            navigate('/login'); // Redirigir al login si no es admin
+            return;
+        }
+
+        // Obtener productos con su stock
         const fetchProducts = async () => {
             try {
                 const response = await fetch(`${BACKEND_URL}/api/productos`);
@@ -19,19 +32,20 @@ const AdminPage = () => {
                 setError(error.message);
             }
         };
+
         fetchProducts();
-    }, []);
+    }, [navigate]);
 
     const handleStockChange = (productId, talle, newCantidad) => {
         setProducts(prevProducts =>
             prevProducts.map(product =>
                 product.id === productId
                     ? {
-                          ...product,
-                          stock: product.stock.map(s =>
-                              s.talle === talle ? { ...s, cantidad: newCantidad } : s
-                          ),
-                      }
+                        ...product,
+                        stock: product.stock.map(s =>
+                            s.talle === talle ? { ...s, cantidad: newCantidad } : s
+                        ),
+                    }
                     : product
             )
         );
@@ -39,24 +53,41 @@ const AdminPage = () => {
 
     const handleSave = async (productId, stock) => {
         try {
+            const userId = localStorage.getItem('userId'); // Recuperar el userId del localStorage
+
+            if (!userId) {
+                alert('No tienes permisos para realizar esta acción.');
+                return;
+            }
+
             const response = await fetch(`${BACKEND_URL}/api/productos/${productId}/stock`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ stock }),
+                body: JSON.stringify({ userId, stock }), // Incluye el userId en el cuerpo
             });
 
+            console.log('Response:', response); // Imprimir la respuesta
+
             if (!response.ok) {
-                throw new Error('Error al actualizar el stock');
+                const errorData = await response.json();
+                console.error('Error del backend:', errorData); // Imprimir el error del backend
+                throw new Error(errorData.error || 'Error al actualizar el stock');
             }
 
             alert('Stock actualizado correctamente');
         } catch (error) {
-            console.error(error);
-            alert('Error al actualizar el stock');
+            console.error('Error al actualizar el stock:', error.message);
+            alert(`Error al actualizar el stock: ${error.message}`);
         }
     };
+
+
+
+    if (!isAdmin) {
+        return <div>No tienes permisos para acceder a esta página.</div>;
+    }
 
     if (error) {
         return <div className="admin-page">Error: {error}</div>;
