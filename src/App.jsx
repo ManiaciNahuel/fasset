@@ -14,23 +14,13 @@ import LoginPage from "./conection/LoginPage.jsx";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    // Leer estado de autenticación desde localStorage
-    const loggedIn = localStorage.getItem("isLoggedIn");
-    setIsLoggedIn(!!loggedIn); // Convierte a booleano
+    // Verificar el rol del usuario en localStorage
+    const adminStatus = localStorage.getItem("isAdmin") === "true";
+    setIsAdmin(adminStatus);
   }, []);
-
-  const handleLogin = () => {
-    localStorage.setItem("isLoggedIn", "true");
-    setIsLoggedIn(true);
-  };
-
-  const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
-    setIsLoggedIn(false);
-  };
 
   return (
     <BrowserRouter>
@@ -38,18 +28,18 @@ function App() {
         <CartProvider>
           <NavBar />
           <Routes>
+            {/* Rutas públicas */}
             <Route path="/" element={<Home />} />
             <Route path="/section" element={<Section />} />
             <Route path="/item/:id" element={<ItemPage />} />
             <Route path="/cart" element={<CartPage />} />
             <Route path="/checkout" element={<Checkout />} />
-            <Route
-              path="/login"
-              element={<LoginPage onLogin={() => localStorage.setItem("isLoggedIn", "true")} />}
-            />
+            <Route path="/login" element={<LoginPage />} />
+
+            {/* Rutas protegidas */}
             <Route
               path="/admin"
-              element={localStorage.getItem("isLoggedIn") ? <AdminPage /> : <Navigate to="/login" />}
+              element={isAdmin ? <AdminPage /> : <Navigate to="/login" />}
             />
           </Routes>
           <Footer />

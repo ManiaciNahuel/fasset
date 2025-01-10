@@ -1,11 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const LoginPage = ({ onLogin }) => {
+const LoginPage = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
+
+    useEffect(() => {
+        // Redirigir al usuario si ya está autenticado
+        const isAdmin = localStorage.getItem('isAdmin');
+        if (isAdmin === 'true') {
+            navigate('/admin');
+        }
+    }, [navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -30,13 +38,17 @@ const LoginPage = ({ onLogin }) => {
             localStorage.setItem('isAdmin', data.isAdmin);
             localStorage.setItem('userId', data.userId);
 
-            navigate('/'); // Redirige al inicio o a una página protegida
+            // Redirigir según el rol
+            if (data.isAdmin) {
+                navigate('/admin'); // Página de admin
+            } else {
+                navigate('/'); // Página estándar
+            }
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
             setError('Usuario o contraseña incorrectos');
         }
     };
-
 
     return (
         <div className="login-page">
