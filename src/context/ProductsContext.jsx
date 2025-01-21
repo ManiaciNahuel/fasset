@@ -13,7 +13,7 @@ export const ProductsProvider = ({ children }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("https://fassetback-production.up.railway.app/api/productos");
+        const response = await fetch("https://fassetback-production-39c8.up.railway.app/api/productos");
         if (!response.ok) {
           throw new Error("Error al obtener los productos");
         }

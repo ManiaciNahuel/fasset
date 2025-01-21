@@ -7,7 +7,7 @@ const AdminPage = () => {
     const [isAdmin, setIsAdmin] = useState(false);
     const navigate = useNavigate();
 
-    const BACKEND_URL = 'https://fassetback-production.up.railway.app';
+    const BACKEND_URL = 'https://fassetback-production-39c8.up.railway.app';
 
     useEffect(() => {
         // Verificar si el usuario es administrador

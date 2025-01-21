@@ -5,7 +5,7 @@ const Productos = () => {
     const [error, setError] = useState(null);
 
     // URL del backend
-    const BACKEND_URL = "https://fassetback-production.up.railway.app/api/productos";
+    const BACKEND_URL = "https://fassetback-production-39c8.up.railway.app/api/productos";
 
     // Obtener productos desde el backend
     const fetchProductos = async () => {
