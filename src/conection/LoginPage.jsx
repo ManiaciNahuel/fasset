@@ -38,17 +38,20 @@ const LoginPage = () => {
             localStorage.setItem('isAdmin', data.isAdmin);
             localStorage.setItem('userId', data.userId);
 
-            // Redirigir según el rol
-            if (data.isAdmin) {
-                navigate('/admin'); // Página de admin
-            } else {
-                navigate('/'); // Página estándar
-            }
+            // Redirigir tras guardar
+            setTimeout(() => {
+                if (data.isAdmin) {
+                    navigate('/admin'); // Página de admin
+                } else {
+                    navigate('/'); // Página estándar
+                }
+            }, 0); // Garantiza que la redirección ocurre al final del ciclo de renderizado
         } catch (error) {
             console.error('Error al iniciar sesión:', error);
             setError('Usuario o contraseña incorrectos');
         }
     };
+
 
     return (
         <div className="login-page">
