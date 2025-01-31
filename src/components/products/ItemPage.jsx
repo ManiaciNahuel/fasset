@@ -53,8 +53,8 @@ const ItemPage = () => {
                 <div className="image">
                     <img src={limitedImages[currentImageIndex]} alt={item.title} />
                     <div className="image-nav">
-                        <button className="nav-button" onClick={showPreviousImage}>⬅</button>
-                        <button className="nav-button" onClick={showNextImage}>⮕</button>
+                        <button className="nav-button" onClick={showPreviousImage}>🠄</button>
+                        <button className="nav-button" onClick={showNextImage}>🠆</button>
                     </div>
                 </div>
                 <div className="details">
@@ -90,7 +90,7 @@ const ItemPage = () => {
                                         {size}
                                         {hasStock && (
                                             <span className="stock-tooltip">
-                                                {cantidad <= 10 ? `¡Últimas ${cantidad}!` : `${cantidad} disponibles`}
+                                                {cantidad <= 5 ? `¡Últimas ${cantidad}!` : `${cantidad} disponibles`}
                                             </span>
                                         )}
                                         {!hasStock && (
@@ -103,7 +103,18 @@ const ItemPage = () => {
 
                     </div>
 
-                    <div className="price">Precio: <span className="price-number">${item.price}</span></div>
+                    <div className="price-container">
+                        <div className="price">
+                            Precio: <span className="price-number">${item.price}</span>
+                        </div>
+                        <div className="discount-price">
+                            <span className="discount-text">📢 10% OFF en efectivo o transferencia</span>
+                            <span className="discount-value">${(item.price * 0.9).toFixed(2)}</span>
+                        </div>
+                    </div>
+
+
+
                     <div className="botones">
                         <button onClick={handleBuyNow} disabled={!selectedSize}>
                             Comprar ya

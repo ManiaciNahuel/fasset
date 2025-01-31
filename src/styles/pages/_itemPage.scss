@@ -1,3 +1,33 @@
+.price-container {
+    text-align: left;
+    font-size: 1.2rem;
+    color: #333;
+
+    .price-number {
+        font-weight: bold;
+        font-size: 1.5rem;
+        margin-right: 10px;
+    }
+
+    .discount-price {
+        display: flex;
+        flex-direction: column;
+        margin-top: 5px;
+
+        .discount-text {
+            color: #28a745; // Verde para el descuento
+            font-weight: bold;
+        }
+
+        .discount-value {
+            font-size: 1.5rem;
+            color: #28a745; // Verde llamativo
+            font-weight: bold;
+        }
+    }
+}
+
+
 .item-page {
   width: 100vw;
   height: 100vh;
