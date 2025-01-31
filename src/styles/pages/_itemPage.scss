@@ -28,6 +28,10 @@
   }
   .caracteristicas {
     font-weight: 500;
+    
+    li {
+      padding-left: 15px;
+    }
   }
 
   .image {
@@ -138,7 +142,7 @@
     }
 
     h3 {
-      font-weight: 400;
+      font-weight: 700;
     }
 
     p {
@@ -321,6 +325,7 @@
       color: #fff;
       padding: 5px 10px;
       border-radius: 5px;
+      font-weight: lighter;
       font-size: 12px;
       white-space: nowrap;
       z-index: 10;
@@ -329,6 +334,60 @@
 
     &:hover .stock-tooltip {
       display: block; // Mostrar tooltip al hover
+    }
+  }
+}
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+
+  h2 {
+    margin-bottom: 1rem;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+
+    &:last-child {
+      background-color: #dc3545;
+
+      &:hover {
+        background-color: #b52a37;
+      }
     }
   }
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import { useProducts } from '../../context/ProductsContext';
+import PurchaseModal from '../cart/PurchaseModal';
 
 const ItemPage = () => {
     const { id } = useParams(); // Obtener ID del producto desde la URL
@@ -9,6 +10,7 @@ const ItemPage = () => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [selectedSize, setSelectedSize] = useState(null); // Tamaño seleccionado
     const { successMessage } = useCart();
+    const [showModal, setShowModal] = useState(false);
 
     // Buscar el producto en la lista global usando el ID
     const item = products.find((product) => product.id === parseInt(id));
@@ -30,11 +32,46 @@ const ItemPage = () => {
 
     const handleBuyNow = () => {
         if (selectedSize) {
-            const whatsappMessage = `Hola! Vi esta remera ${item.title} en su página y estaba interesado en comprar una talle ${selectedSize}.`;
-            const whatsappUrl = `https://wa.me/+5493512185195?text=${encodeURIComponent(whatsappMessage)}`;
-            window.open(whatsappUrl, '_blank');
+            setShowModal(true);
         } else {
             alert('Por favor selecciona un tamaño antes de proceder con la compra.');
+        }
+    };
+
+
+    const handleWhatsappPurchase = () => {
+        const whatsappMessage = `Hola! Vi esta remera ${item.title} en su página y estaba interesado en comprar una talle ${selectedSize}.`;
+        const whatsappUrl = `https://wa.me/+5493512185195?text=${encodeURIComponent(whatsappMessage)}`;
+        window.open(whatsappUrl, '_blank');
+        setShowModal(false);
+    };
+
+    const handleMercadoPagoPurchase = async () => {
+        try {
+            const response = await fetch('https://fassetback-production-39c8.up.railway.app/api/checkout/create_preference', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    items: [{
+                        title: item.title,
+                        unit_price: item.price,
+                        quantity: 1
+                    }],
+                    payer: {
+                        email: 'test_user@example.com',
+                        name: 'Nombre del Comprador',
+                        phone: { number: '123456789' }
+                    }
+                })
+            });
+
+            const data = await response.json();
+            window.open(data.init_point, '_blank');
+            setShowModal(false);
+        } catch (error) {
+            console.error("Error al procesar el pago con Mercado Pago:", error);
         }
     };
 
@@ -59,18 +96,22 @@ const ItemPage = () => {
                 </div>
                 <div className="details">
                     <h2>{item.title}</h2>
-                    <h3>Características:</h3>
+                    <div>
+                    <h3>Características</h3>
                     <ul className="caracteristicas">
                         {item.description.map((line, index) => (
                             <li key={index}>{line}</li>
                         ))}
                     </ul>
-                    <h3>Especificaciones:</h3>
+                    </div>
+                    <div>
+                    <h3>Especificaciones</h3>
                     <ul className="caracteristicas">
                         {item.especificacion.map((line, index) => (
                             <li key={index}>{line}</li>
                         ))}
                     </ul>
+                    </div>
                     <div>
                         <h3>Talles disponibles:</h3>
                         <ul className="talles">
@@ -90,7 +131,7 @@ const ItemPage = () => {
                                         {size}
                                         {hasStock && (
                                             <span className="stock-tooltip">
-                                                {cantidad <= 10 ? `¡Últimas ${cantidad}!` : `${cantidad} disponibles`}
+                                                {cantidad <= 5 ? `Últimas ${cantidad}!` : `${cantidad} disponibles`}
                                             </span>
                                         )}
                                         {!hasStock && (
@@ -111,6 +152,13 @@ const ItemPage = () => {
                     </div>
                 </div>
             </div>
+            {showModal && (
+                <PurchaseModal
+                    onClose={() => setShowModal(false)}
+                    onWhatsappPurchase={handleWhatsappPurchase}
+                    onMercadoPagoPurchase={handleMercadoPagoPurchase}
+                />
+            )}
         </div>
     );
 };
