@@ -102,7 +102,7 @@
       aspect-ratio: 7/4;
       max-height: 220px;
       width: 100%;
-      object-fit:contain;
+      object-fit: contain;
     }
 
     .title {
@@ -123,6 +123,34 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px; // Ajuste para evitar separación innecesaria
+
+      .price {
+        font-size: 20px;
+        font-weight: bold;
+        color: $colorTerciario;
+      }
+
+      .discount-price {
+        font-size: 12px;
+        font-weight: 500;
+        color: #4caf50; // Un verde sutil, no demasiado llamativo
+        margin-top: -5px; // Para acercarlo al precio principal sin desordenar
+      }
+
+      .discount-text {
+        font-size: 11px;
+        font-weight: 400;
+        color: #777; // Un gris tenue para que no resalte demasiado
+      }
+
+      .discount-value {
+        font-weight: 600;
+        font-size: 14px;
+      }
 
       .price {
         color: $colorTerciario;
@@ -138,7 +166,6 @@
         font-weight: 400;
         font-size: 14px;
         color: #666;
-        margin-left: 15px;
       }
 
       .btn-vermas {
@@ -149,6 +176,7 @@
         text-transform: uppercase;
         color: $colorTerciario;
         padding: 12px 18px;
+        margin-top: 2rem;
         cursor: pointer;
         transition: all 0.3s ease-in-out;
         line-height: 0.95;
@@ -183,76 +211,76 @@
 
     @include respond(tab-port) {
       margin: 1rem;
-    padding: 20px;
+      padding: 20px;
 
-    .title {
-      font-size: 26px;
-    }
-
-    .desc {
-      font-size: 15px;
-    }
-
-    .cta {
-      flex-direction: column;
-      padding: 15px 0;
-
-      .price {
-        font-size: 20px;
+      .title {
+        font-size: 26px;
       }
 
-      .estado {
-        font-size: 14px;
-        margin-left: 0;
-        margin-top: 5px;
+      .desc {
+        font-size: 15px;
       }
 
-      .btn-vermas {
-        font-size: 12px;
-        padding: 10px 15px;
-        margin-top: 10px;
+      .cta {
+        flex-direction: column;
+        padding: 15px 0;
+
+        .price {
+          font-size: 20px;
+        }
+
+        .estado {
+          font-size: 14px;
+          margin-left: 0;
+          margin-top: 5px;
+        }
+
+        .btn-vermas {
+          font-size: 12px;
+          padding: 10px 15px;
+          margin-top: 10px;
+        }
+      }
+
+      img {
+        max-height: 200px;
       }
     }
-
-    img {
-      max-height: 200px;
-    }
-  }
 
     @include respond(phone) {
       margin: 0.5rem;
-    padding: 15px;
+      padding: 15px;
 
-    .title {
-      font-size: 24px;
-    }
-
-    .desc {
-      font-size: 14px;
-    }
-
-    .cta {
-      padding: 10px 0;
-
-      .price {
-        font-size: 18px;
+      .title {
+        font-size: 24px;
       }
 
-      .estado {
+      .desc {
         font-size: 14px;
       }
 
-      .btn-vermas {
-        font-size: 11px;
-        padding: 8px 12px;
+      .cta {
+        padding: 10px 0;
+
+        .price {
+          font-size: 18px;
+        }
+
+        .estado {
+          font-size: 14px;
+        }
+
+        .btn-vermas {
+          font-size: 11px;
+          padding: 8px 12px;
+        }
+      }
+
+      img {
+        max-height: 180px;
       }
     }
-
-    img {
-      max-height: 180px;
-    }
   }
-}
 
   &:before {
     content: "";
