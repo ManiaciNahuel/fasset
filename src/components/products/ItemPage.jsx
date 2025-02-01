@@ -29,14 +29,18 @@ const ItemPage = () => {
 
 
     const handleBuyNow = () => {
-        if (selectedSize) {
-            const whatsappMessage = `Hola! Vi esta remera ${item.title} en su página y estaba interesado en comprar una talle ${selectedSize}.`;
-            const whatsappUrl = `https://wa.me/+5493512185195?text=${encodeURIComponent(whatsappMessage)}`;
-            window.open(whatsappUrl, '_blank');
-        } else {
-            alert('Por favor selecciona un tamaño antes de proceder con la compra.');
+        console.log("Talle seleccionado:", selectedSize); 
+        if (!selectedSize) {
+            alert('⚠️ Por favor selecciona un talle antes de proceder con la compra.');
+            
+            return; // Detiene la ejecución del resto de la función
         }
+
+        const whatsappMessage = `Hola! Vi esta remera ${item.title} en su página y estaba interesado en comprar una talle ${selectedSize}.`;
+        const whatsappUrl = `https://wa.me/+5493512185195?text=${encodeURIComponent(whatsappMessage)}`;
+        window.open(whatsappUrl, '_blank');
     };
+
 
     if (!item) {
         return <div className="loading">Cargando...</div>;
@@ -59,18 +63,22 @@ const ItemPage = () => {
                 </div>
                 <div className="details">
                     <h2>{item.title}</h2>
-                    <h3>Características:</h3>
-                    <ul className="caracteristicas">
-                        {item.description.map((line, index) => (
-                            <li key={index}>{line}</li>
-                        ))}
-                    </ul>
-                    <h3>Especificaciones:</h3>
-                    <ul className="caracteristicas">
-                        {item.especificacion.map((line, index) => (
-                            <li key={index}>{line}</li>
-                        ))}
-                    </ul>
+                    <div>
+                        <h3>Características</h3>
+                        <ul className="caracteristicas">
+                            {item.description.map((line, index) => (
+                                <li key={index}>{line}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Especificaciones</h3>
+                        <ul className="caracteristicas">
+                            {item.especificacion.map((line, index) => (
+                                <li key={index}>{line}</li>
+                            ))}
+                        </ul>
+                    </div>
                     <div>
                         <h3>Talles disponibles:</h3>
                         <ul className="talles">
@@ -90,7 +98,7 @@ const ItemPage = () => {
                                         {size}
                                         {hasStock && (
                                             <span className="stock-tooltip">
-                                                {cantidad <= 5 ? `¡Últimas ${cantidad}!` : `${cantidad} disponibles`}
+                                                {cantidad <= 5 ? `Últimas ${cantidad}!` : `${cantidad} disponibles`}
                                             </span>
                                         )}
                                         {!hasStock && (
@@ -105,18 +113,18 @@ const ItemPage = () => {
 
                     <div className="price-container">
                         <div className="price">
-                            Precio: <span className="price-number">${item.price}</span>
+                            Precio: <span className="price-number">${new Intl.NumberFormat('es-AR').format(item.price)}</span>
                         </div>
                         <div className="discount-price">
                             <span className="discount-text">📢 10% OFF en efectivo o transferencia</span>
-                            <span className="discount-value">${(item.price * 0.9).toFixed(2)}</span>
+                            <span className="discount-value">${new Intl.NumberFormat('es-AR').format((item.price * 0.9).toFixed(0))}</span>
                         </div>
                     </div>
 
 
 
                     <div className="botones">
-                        <button onClick={handleBuyNow} disabled={!selectedSize}>
+                        <button onClick={handleBuyNow} >
                             Comprar ya
                         </button>
                     </div>

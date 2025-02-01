@@ -14,7 +14,7 @@ export const Item = ({ image, title, price, id }) => {
                 </div>
 
                 <div className="cta">
-                    <div className="price">${price}</div>
+                    <div className="price">${new Intl.NumberFormat('es-AR').format(price)}</div>
                     <div className='estado'>Disponible</div>
                     <div className="btn-vermas">
                         Ver más
