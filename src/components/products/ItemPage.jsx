@@ -57,8 +57,8 @@ const ItemPage = () => {
                 <div className="image">
                     <img src={limitedImages[currentImageIndex]} alt={item.title} />
                     <div className="image-nav">
-                        <button className="nav-button" onClick={showPreviousImage}>🠄</button>
-                        <button className="nav-button" onClick={showNextImage}>🠆</button>
+                        <button className="nav-button" onClick={showPreviousImage}>&#9665;</button>
+                        <button className="nav-button" onClick={showNextImage}>&#9655;</button>
                     </div>
                 </div>
                 <div className="details">
