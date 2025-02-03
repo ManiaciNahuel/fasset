@@ -69,7 +69,8 @@ const ItemPage = () => {
             });
 
             const data = await response.json();
-            window.open(data.init_point, '_blank');
+            window.location.href = data.init_point;
+
             setShowModal(false);
         } catch (error) {
             console.error("Error al procesar el pago con Mercado Pago:", error);
