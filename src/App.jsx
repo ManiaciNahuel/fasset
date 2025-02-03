@@ -12,6 +12,9 @@ import { ProductsProvider } from "./context/ProductsContext"; // Importamos el p
 import AdminPage from "./conection/AdminPage.jsx";
 import LoginPage from "./conection/LoginPage.jsx";
 import { useEffect, useState } from "react";
+import SuccessPage from "./components/redirectMP/SuccessPage.jsx";
+import FailurePage from "./components/redirectMP/FailurePage.jsx";
+import PendingPage from "./components/redirectMP/PendingPage.jsx";
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -41,6 +44,9 @@ function App() {
               path="/admin"
               element={isAdmin ? <AdminPage /> : <Navigate to="/login" />}
             />
+            <Route path="/success" element={<SuccessPage />} />
+            <Route path="/failure" element={<FailurePage />} />
+            <Route path="/pending" element={<PendingPage />} />
           </Routes>
           <Footer />
         </CartProvider>

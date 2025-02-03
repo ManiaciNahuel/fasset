@@ -1,0 +1,29 @@
+.payment-status {
+  text-align: center;
+  margin-top: 50px;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+
+  button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      background: #0056b3;
+    }
+  }
+}
