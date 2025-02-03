@@ -43,7 +43,7 @@ const ItemPage = () => {
     const handleWhatsappPurchase = () => {
         const whatsappMessage = `Hola! Vi esta remera ${item.title} en su página y estaba interesado en comprar una talle ${selectedSize}.`;
         const whatsappUrl = `https://wa.me/+5493512185195?text=${encodeURIComponent(whatsappMessage)}`;
-        window.open(whatsappUrl, '_blank');
+        window.location.href = whatsappUrl
         setShowModal(false);
     };
 
