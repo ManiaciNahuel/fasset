@@ -133,7 +133,6 @@ const ItemPage = () => {
                                         {hasStock && (
                                             <span className="stock-tooltip">
                                                 {cantidad <= 5 ? `Últimas ${cantidad}!` : `${cantidad} disponibles`}
-                                                {cantidad <= 5 ? `Últimas ${cantidad}!` : `${cantidad} disponibles`}
                                             </span>
                                         )}
                                         {!hasStock && (
