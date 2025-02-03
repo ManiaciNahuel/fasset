@@ -15,16 +15,18 @@ export const Section = () => {
     <section id="section" className="section sec-pad">
       <div className="main-container">
         <div className="section__content">
-          {products.map((product) => (
-            <div key={product.id} className="section__content-details">
-              <Item
-                image={product.images[4]} // Muestra la primera imagen del array
-                title={product.title}
-                price={product.price}
-                id={product.id}
-              />
-            </div>
-          ))}
+          {products
+            .filter((product) => product.id !== 3) // 🔹 Excluye el producto de prueba (id: 3)
+            .map((product) => (
+              <div key={product.id} className="section__content-details">
+                <Item
+                  image={product.images[4]} // Muestra la primera imagen del array
+                  title={product.title}
+                  price={product.price}
+                  id={product.id}
+                />
+              </div>
+            ))}
         </div>
         <div className="section__banner">
           <img src={baner_10off} alt="banerPublicidades" />
