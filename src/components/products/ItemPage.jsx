@@ -151,8 +151,7 @@ const ItemPage = () => {
                             Precio: <span className="price-number">${new Intl.NumberFormat('es-AR').format(item.price)}</span>
                         </div>
                         <div className="discount-price">
-                            <span className="discount-text">📢 10% OFF en efectivo o transferencia</span>
-                            <span className="discount-value">${new Intl.NumberFormat('es-AR').format((item.price * 0.9).toFixed(0))}</span>
+                            <span className="discount-text">📢 15% OFF en efectivo o transferencia: <span className="discount-value">${new Intl.NumberFormat('es-AR').format((item.price * 0.83333333333).toFixed(0))}</span></span>
                         </div>
                     </div>
 

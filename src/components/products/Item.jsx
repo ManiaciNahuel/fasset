@@ -18,9 +18,9 @@ export const Item = ({ image, title, price, id }) => {
                         ${new Intl.NumberFormat('es-AR').format(price)}
                     </div>
                     <div className="discount-price">
-                        <span className="discount-text">10% OFF efectivo/transferencia: </span>
+                        <span className="discount-text">15% OFF efectivo/transferencia: </span>
                         <span className="discount-value">
-                             ${new Intl.NumberFormat('es-AR').format((price * 0.9).toFixed(0))}
+                             ${new Intl.NumberFormat('es-AR').format((price * 0.83333333333).toFixed(0))}
                         </span>
                     </div>
                     <div className="btn-vermas">
